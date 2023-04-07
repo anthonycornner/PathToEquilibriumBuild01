@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
 using UnityEngine;
 
 // give player object physics to move left and right, jump will be in a different script
@@ -12,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     // necessary for animations and physics
     private Rigidbody2D rb2D;
     private Animator myAnimator;
+    private bool facingRight = true;
 
     // variables to play with
     public float speed = 2.0f;
@@ -36,5 +39,21 @@ public class PlayerMovement : MonoBehaviour
     {
         // move the character left and right
         rb2D.velocity = new Vector2(horizMovement * speed, rb2D.velocity.y);
+        myAnimator.SetFloat("speed", Mathf.Abs(horizMovement));
+
+        Flip(horizMovement);
+    }
+
+    // flip character on y axis to "turn" them from right to left
+    private void Flip(float horizontal)
+    {
+        if ((horizontal < 0 && facingRight) || (horizontal > 0 && !facingRight))
+        {
+            facingRight = !facingRight;
+
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
     }
 }
