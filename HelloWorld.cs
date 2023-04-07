@@ -8,6 +8,6 @@ public class HelloWorld : MonoBehaviour
 {
     void Start ()
     {
-        Console.WriteLine("Hello World");
+        Debug.Log("Hello World");
     }
 }
