@@ -36,7 +36,7 @@ public class PlayerJump : MonoBehaviour
         // what it means to be grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,radOCircle, whatIsGround);
 
-        if(isGrounded )
+        if(isGrounded)
         {
             jumpTimeCounter = jumpTime;
         }
